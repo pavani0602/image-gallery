@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <h1> Image Gallery of World Explorer </h1>
+    <p>Discover places, cultures, food and wildlife around the world.</p>
+    <div class="navbar">
+        <input class = "search-bar" type="text" placeholder="Search for an image ">
+        <button id="activity"> 🎯 My Activity </button>
+    </div>
+    <div class="activity-menu">
+        <button id="home">🏠Home Page</button>
+        <button id="liked-images">❤️ Liked Images</button>
+        <button id="downloaded-images">⬇️ Downloaded Images</button>
+    </div>
+    <div class="category-buttons">
+        <button class="buttons"> ALL </button>
+        <button class="buttons"> Beaches </button>
+        <button class="buttons"> Cities </button>
+        <button class="buttons"> Festivals </button>
+        <button class="buttons"> Food </button>
+        <button class="buttons"> Mountains </button>
+        <button class="buttons"> Wildlife </button>
+    </div>
+    <div class="gallery-images">
+        <div class="image-card">
+            <img src="images/beaches/beach1.jpg" alt="beach" data-item="beaches">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/beaches/beach2.jpg" alt="beach" data-item="beaches">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/beaches/beach3.jpg" alt="Beach" data-item="beaches">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/cities/city1.jpg" alt="udaipur" data-item="cities">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/cities/city2.jpg" alt="Jaipur" data-item="cities">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/cities/city3.jpg" alt="Rajasthan" data-item="cities">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/festivals/festival1.jpg" alt="sankranthi" data-item="festivals">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/festivals/festival2.jpg" alt="holi" data-item="festivals">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/festivals/festival3.jpg" alt="diwali" data-item="festivals">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert1.jpg" alt="milkshake" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert2.jpg" alt="donut" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert3.jpg" alt="cake" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert4.jpg" alt="indiansweets" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert5.jpg" alt="indiansweets" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/desserts/dessert6.jpg" alt="indiansweets" data-item="dessert-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/fastfood/fastfood1.jpg" alt="pizza" data-item="fast-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/fastfood/fastfood2.jpg" alt="pani-puri" data-item="fast-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/fastfood/fastfood3.jpg" alt="Burger" data-item="fast-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/healthyfood/healthyfood2.jfif" alt="veggies" data-item="healthy-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/healthyfood/food1.jpg" alt="HealthyBowl" data-item="healthy-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/chinese/chinese1.webp" alt="chinese" data-item="chinese-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/chinese/chinese2.webp" alt="hotpot" data-item="chinese-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/chinese/chinese3.webp" alt="momos" data-item="chinese-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/chinese/chinese4.webp" alt="streetfood" data-item="chinese-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/korean/korean1.webp" alt="korean" data-item="korean-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/korean/korean2.webp" alt="kimchi" data-item="korean-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/indian/biryani.jpg" alt="biryani" data-item="indian-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/indian/dosa.jpg" alt="dosa" data-item="indian-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/indian/idly.jfif" alt="idly" data-item="indian-food">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/food/indian/meals.jpg" alt="meals" data-item="meals">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/mountain/mountain1.avif" alt="mountains" data-item="mountain">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/mountain/mountain2.jpg" alt="mountains" data-item="mountain">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/mountain/mountain3.jpg" alt="mountains" data-item="mountain">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife1.jpg" alt="deer" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife2.jpg" alt="deer" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife3.jpg" alt="tortoise" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife4.jpg" alt="fox" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife5.jpg" alt="lion" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+        <div class="image-card">
+            <img src="images/widelife/wildlife6.jpg" alt="deer" data-item="wildlife">
+            <span class="like">🤍</span>
+            <span class="download">⤓</span>
+        </div>
+    </div>
+    <div class="lightbox">
+    <span class="close-btn">&times;</span>
+    <span class="prev-button">&lt;</span>
+    <span class="next-button">&gt;</span>
+    <span class="lightbox-like">🤍</span>
+    <span class="lightbox-download">⤓</span>
+    <img class="lightbox-image" src="" alt="">
+    </div>
+    <script src="script.js"> </script>
+</body>
+</html>

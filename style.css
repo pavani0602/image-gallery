@@ -1,0 +1,182 @@
+body {
+    text-align: center;
+    padding: 8px;
+}
+p {
+    font-size: 20px;  
+}
+.navbar {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap:10px;
+}
+/* img {
+    height: 40px;
+    width: 20px;
+} */
+.search-bar {
+    height: 40px;
+    width: 75%;
+    border: 2px solid black;
+    border-radius: 24px;
+}
+input[type="text"] {
+    background-image: url('images/searchicon.png');
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    padding-left: 45px;
+    box-sizing: border-box;
+}
+#activity {
+    height: 40px;
+    width: 25%;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 24px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    /* padding-left: 0px; */
+    box-sizing: border-box;
+}
+.gallery-images{
+    display : grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:15px;
+    height:auto;
+}
+.gallery-images img {
+    width:100%;
+    height:400px;
+    cursor:pointer;
+    transition : transform 0.5s ease;
+}
+.category-buttons {
+    /* border: 2px solid black;  */
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 20px 0; 
+    gap:10px;
+}
+.buttons {
+    gap:10px;
+    border: 1px solid black;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    cursor:pointer;
+    font-size: large;
+    user-select: none; /*is used to prevent users from highlighting or selecting text */
+}
+.buttons:hover {
+    background-color: #e0e0e0;
+}
+.lightbox {
+    position : fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+.close-btn , .lightbox-like , .lightbox-download{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+.lightbox-download{
+    right:105px;
+    font-size: 25px;
+    top:30px;
+    font-weight: bolder;
+}
+.lightbox-like {
+    top:25px;
+    right:60px;
+    font-size: 25px;
+}
+.prev-button,
+.next-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+.next-button {
+    right:20px;
+}
+.prev-button {
+    left:20px;
+}
+.image-card {
+    border-radius: 0;
+    position: relative;
+    overflow:hidden;
+    transition: transform 0.5s ease;
+}
+.image-card:hover{
+    transform: scale(1.05);
+    border-radius: 8px;
+}
+.like {
+    left:10px;
+    bottom:55px;
+    position:absolute;
+    font-size: 25px;
+    user-select: none;
+    cursor: pointer;
+    opacity: 0;
+    color:white;
+    transition: transform 0.5s ease; 
+}
+.download {
+    left:20px;
+    bottom:20px;
+    position: absolute;
+    font-size: 30px;
+    user-select: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: transform 0.5s ease; 
+    color:white;
+    font-weight: bolder;
+}
+.image-card:hover .like {
+    opacity:1;
+}
+.image-card:hover .download{
+    opacity:1;
+}
+.activity-menu{
+    display: none;
+    justify-content: space-evenly;
+}
+#liked-images ,
+#downloaded-images,
+#home{
+    gap:10px;
+    border: 1px solid black;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    cursor:pointer;
+    font-size: large;
+    user-select: none;
+}
