@@ -24,20 +24,6 @@ An interactive Image Gallery web application built using HTML, CSS, and JavaScri
 * JavaScript (ES6)
 * Local Storage API
 
-## Live Demo
-
-🔗https://pavani0602.github.io/image-gallery/
-
-## Project Structure
-
-image-gallery/
-│
-├── index.html
-├── style.css
-├── script.js
-└── images/
-
-
 ## How to Run
 
 1. Clone the repository:
