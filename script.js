@@ -1,7 +1,9 @@
+//DOM SELECTORS
 let images = document.querySelectorAll(".gallery-images img");
 let imageCards = document.querySelectorAll(".image-card");
 let search = document.querySelector(".search-bar");
 let buttons = document.querySelectorAll(".buttons");
+let category_buttons = document.querySelector(".category-buttons");
 
 
 let lightbox = document.querySelector(".lightbox");
@@ -16,16 +18,56 @@ let lightBoxDownload = document.querySelector(".lightbox-download");
 let likeButtns = document.querySelectorAll(".like");
 let imgDownloads = document.querySelectorAll(".download");
 
-let activityMenuItems = document.querySelectorAll(".activity-menu");
+// let activityMenuItems = document.querySelectorAll(".activity-menu");
+let activityMenu = document.querySelector(".activity-menu");
 let ActivityStore = document.querySelector("#activity");
 let likedImagesbyMe = document.querySelector("#liked-images");
 let downloadedImagesbyMe =document.querySelector("#downloaded-images");
 let homePage = document.querySelector("#home");
 
-let currentIndex;
-let likedImages = new Set();
-let downloadedImg = new Set();
+//GLOBAL VARIABLES
 
+let currentIndex;
+// let likedImages = new Set();
+// let downloadedImg = new Set();
+let likedImages = new Set(JSON.parse(localStorage.getItem("likedImages")) || []);
+let downloadedImg = new Set(JSON.parse(localStorage.getItem("downloadedImg")) || []);
+
+//LOCAL STORAGE
+
+function saveLikes() {
+    localStorage.setItem(
+        "likedImages",
+        JSON.stringify([...likedImages])
+    );
+}
+
+function saveDownloads() {
+    localStorage.setItem(
+        "downloadedImg",
+        JSON.stringify([...downloadedImg])
+    );
+}
+
+//UI UPDATE FUNCTIONS
+function updateLightboxIcons() {
+    lightBoxLike.innerText =
+        likedImages.has(currentIndex) ? "❤️" : "🤍";
+
+    lightBoxDownload.innerText =
+        downloadedImg.has(currentIndex) ? "✓" : "⤓";
+}
+
+//RESTORE SAVED LIKES AND DOWNLOADS FROM LOCAL STORAGE
+likedImages.forEach((index) => {
+    likeButtns[index].innerText = "❤️";
+});
+
+downloadedImg.forEach((index) => {
+    imgDownloads[index].innerText = "✓";
+});
+
+//SEARCH BAR
 
 search.addEventListener("input", () => {
     let substring = search.value.trim().toLowerCase();
@@ -42,6 +84,8 @@ search.addEventListener("input", () => {
         }
     });
 });
+
+//CATEGORY-BUTTONS
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -62,41 +106,31 @@ buttons.forEach((button) => {
     });
 });
 
+//LIGHTBOX OPEN FUNCTIONALITY
 images.forEach((image,index) => {
     image.addEventListener("click", () => {
         currentIndex=index;
         lightBoxImg.src = image.src;
         lightbox.style.display="flex";
-        if(likedImages.has(currentIndex)) {
-            lightBoxLike.innerText = "❤️";
-        }
-        else {
-            lightBoxLike.innerText = "🤍";
-        }
-        if(downloadedImg.has(currentIndex)) {
-            lightBoxDownload.innerText="✓";
-        }
-        else {
-            lightBoxDownload.innerText="⤓";
-        }
+        updateLightboxIcons();
     });
 });
 
-
+//CLOSE FUNCTIONALITY OF LIGHT BOX USING X MARK
 close_button.addEventListener("click", () => {
     lightBoxImg.src="";
     lightbox.style.display="none";
 })
 
+//CLOSE FUNC OF LIGHT BOX BY CLICKING AREA NOT OCCUPIED BY IMAGE IN LIGHTBOX
 lightbox.addEventListener("click", (event) => {
-    // console.log(event.target);
     if(event.target===lightbox) {
         lightBoxImg.src="";
-    lightbox.style.display="none";
+        lightbox.style.display="none";
     }
 });
 
-
+//PREVIOUS IMAGE FUNCTIONALITY(LIGHT BOX)
 prevButtn.addEventListener("click",() => {
     if(currentIndex===0) {
         alert("This is the First Image");
@@ -104,21 +138,10 @@ prevButtn.addEventListener("click",() => {
     }
     currentIndex--;
     lightBoxImg.src = images[currentIndex].src;
-    if(likedImages.has(currentIndex)) {
-            lightBoxLike.innerText = "❤️";
-        }
-        else {
-            lightBoxLike.innerText = "🤍";
-        }
-        if(downloadedImg.has(currentIndex)) {
-            lightBoxDownload.innerText="✓";
-        }
-        else {
-            lightBoxDownload.innerText="⤓";
-        }
+    updateLightboxIcons();
 });
 
-
+//NEXT IMAGE FUNCTIONALITY(LIGHT BOX)
 nxtButtn.addEventListener("click",() => {
     if(currentIndex===images.length-1) {
         alert("This is the Last Image");
@@ -126,26 +149,16 @@ nxtButtn.addEventListener("click",() => {
     }
     currentIndex++;
     lightBoxImg.src = images[currentIndex].src;
-    if(likedImages.has(currentIndex)) {
-            lightBoxLike.innerText = "❤️";
-        }
-        else {
-            lightBoxLike.innerText = "🤍";
-        }
-        if(downloadedImg.has(currentIndex)) {
-            lightBoxDownload.innerText="✓";
-        }
-        else {
-            lightBoxDownload.innerText="⤓";
-        }
+    updateLightboxIcons();
 });
 
-
+//LIKE FUNCTIONALITY IN IMAGE CARDS
 likeButtns.forEach((likeButtn,index) => {
     likeButtn.addEventListener("click", () => {
     if (likeButtn.innerText === "🤍" ) {
         likeButtn.innerText = "❤️"; // Fill it
         likedImages.add(index);
+        saveLikes();
         if(index === currentIndex) {
         lightBoxLike.innerText = "❤️";
         }
@@ -153,6 +166,7 @@ likeButtns.forEach((likeButtn,index) => {
         likeButtn.innerText = "🤍"; // Outline it again
         // likeButtn.style.color="white";
         likedImages.delete(index);
+        saveLikes();
         if(index === currentIndex) {
         lightBoxLike.innerText = "🤍";
         }
@@ -160,41 +174,45 @@ likeButtns.forEach((likeButtn,index) => {
 });
 });
 
-
-
+//LIKE FUNCTIONALITY IN LIGHTBOX
 lightBoxLike.addEventListener("click", () => {
 if (lightBoxLike.innerText === "🤍") {
     likedImages.add(currentIndex);
+    saveLikes();
     lightBoxLike.innerText = "❤️";
     likeButtns[currentIndex].innerText = "❤️";
 }
 else {
     lightBoxLike.innerText = "🤍";
     likedImages.delete(currentIndex);
+    saveLikes();
     likeButtns[currentIndex].innerText = "🤍";
 }
 });
 
-
+//DOWNLOAD FUNCTIONALITY IN LIGHTBOX
 lightBoxDownload.addEventListener("click", () => {
     if(lightBoxDownload.innerText==="⤓") {
         downloadedImg.add(currentIndex);
+        saveDownloads();
         lightBoxDownload.innerText ="✓";
         imgDownloads[currentIndex].innerText="✓";
     }
     else {
         lightBoxDownload.innerText="⤓";
         downloadedImg.delete(currentIndex);
+        saveDownloads();
         imgDownloads[currentIndex].innerText="⤓";
     }
 });
 
-
+//DOWNLOAD FUNCTIONALITY IN IMAGE CARDS
 imgDownloads.forEach((imgDownload,index) => {
     imgDownload.addEventListener("click",() => {
     if(imgDownload.innerText==="⤓") {
         imgDownload.innerText = "✓";
         downloadedImg.add(index);
+        saveDownloads();
         if(index===currentIndex) {
             lightBoxDownload.innerText = "✓";
         }
@@ -202,6 +220,7 @@ imgDownloads.forEach((imgDownload,index) => {
     else {
         imgDownload.innerText="⤓";
         downloadedImg.delete(index);
+        saveDownloads();
         if(index===currentIndex) {
             lightBoxDownload.innerText="⤓";
         }
@@ -209,19 +228,21 @@ imgDownloads.forEach((imgDownload,index) => {
 });
 });
 
+//TO DISPLAY HOME,DOWNLOADS,FAVOURITES OPTIONS AS WE CLICK MY ACTIVITY
 ActivityStore.addEventListener("click", () => {
-    activityMenuItems.forEach((activityMenuItem) => {
-        if(activityMenuItem.style.display==="flex") {
-            activityMenuItem.style.display="none";
-        }
-        else {
-            activityMenuItem.style.display="flex";
-        }
-    });
+    if (activityMenu.style.display === "flex") {
+        activityMenu.style.display = "none";
+        category_buttons.style.display = "flex";
+    }
+    else {
+        activityMenu.style.display = "flex";
+        category_buttons.style.display = "none";
+    }
 });
 
+
+//TO SHOW LIKED IMAGES IN MY FAVOURITES(MY ACTIVITY)
 likedImagesbyMe.addEventListener("click", () => {
-    // console.log("Img");
     images.forEach((image, index) => {
         if (likedImages.has(index)) {
             console.log(imageCards[index]);
@@ -235,9 +256,8 @@ likedImagesbyMe.addEventListener("click", () => {
 });
 
 
- 
+//TO SHOW DOWNLOADED IMAGES IN MY DOWNLOADS(MY ACTIVITY)
 downloadedImagesbyMe.addEventListener("click",() => {
-    // console.log("Dow");
     images.forEach((image,index) => {
         if(downloadedImg.has(index)) {
             console.log(index, imageCards[index]);
@@ -249,11 +269,14 @@ downloadedImagesbyMe.addEventListener("click",() => {
     });
 });
 
+//To reach to Home Page from MY ACTIVITY Page
 homePage.addEventListener("click",() => {
     imageCards.forEach((card) => {
         card.style.display="block";
     });
+    category_buttons.style.display="flex";
+    // activityMenuItems.forEach((activityMenuItem) => {
+    activityMenu.style.display = "none";
+    // });
 });
 
-console.log(imageCards.length);
-console.log(images.length);

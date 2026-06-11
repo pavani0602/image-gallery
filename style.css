@@ -1,6 +1,7 @@
 body {
     text-align: center;
     padding: 8px;
+    background-color: #f8f9fa;
 }
 p {
     font-size: 20px;  
@@ -12,10 +13,6 @@ p {
     margin-bottom: 20px;
     gap:10px;
 }
-/* img {
-    height: 40px;
-    width: 20px;
-} */
 .search-bar {
     height: 40px;
     width: 75%;
@@ -166,8 +163,12 @@ input[type="text"] {
     opacity:1;
 }
 .activity-menu{
+    /* display: none;
+    justify-content: space-evenly; */
     display: none;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 #liked-images ,
 #downloaded-images,
@@ -179,4 +180,15 @@ input[type="text"] {
     cursor:pointer;
     font-size: large;
     user-select: none;
+}
+@media (max-width: 900px) {
+    .gallery-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-images {
+        grid-template-columns: 1fr;
+    }
 }
